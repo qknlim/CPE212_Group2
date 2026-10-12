@@ -1,21 +1,22 @@
 all:
-  vars:
-    ansible_user: <username>
-
   children:
-    Ubuntu_servers:
-      hosts:
-        server1:
-          ansible_host: <ip_address>
-        server2:
-          ansible_host: <ip_address>
-
-    CentOS_servers:
-      hosts:
-        centOS:
-          ansible_host: <ip_address>
-
-    linux_servers:
+    docker_hosts:
+      vars:
+        ansible_user: <username>
+        ansible_port: 22
+        ansible_python_interpreter: /usr/bin/python3
       children:
-        Ubuntu_servers:
-        CentOS_servers:
+        centos:
+          hosts:
+            centos-vm1:
+              ansible_host: <ip address>
+        ubuntu:
+          hosts:
+            ubuntu1:
+              ansible_host: <ip address>
+            ubuntu2:
+              ansible_host: <ip address>
+        centos:
+          hosts:
+            centos1:
+              ansible_host: <ip address>
