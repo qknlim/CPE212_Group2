@@ -1,0 +1,21 @@
+all:
+  vars:
+    ansible_user: <username>
+
+  children:
+    Ubuntu_servers:
+      hosts:
+        server1:
+          ansible_host: <ip_address>
+        server2:
+          ansible_host: <ip_address>
+
+    CentOS_servers:
+      hosts:
+        centOS:
+          ansible_host: <ip_address>
+
+    linux_servers:
+      children:
+        Ubuntu_servers:
+        CentOS_servers:
