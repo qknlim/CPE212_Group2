@@ -1,0 +1,4 @@
+---
+# image_name, image_tag, container_name, host_port and container_port
+# come from group_vars/all.yml
+container_restart_policy: unless-stopped

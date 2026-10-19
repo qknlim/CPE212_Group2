@@ -1,0 +1,7 @@
+---
+- name: Build the portfolio Docker image
+  hosts: docker_hosts
+  become: true
+  roles:
+    - role: docker_build
+      tags: [build]

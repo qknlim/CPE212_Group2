@@ -1,0 +1,4 @@
+---
+# image_name and image_tag come from group_vars/all.yml
+project_root: "{{ playbook_dir }}/.."
+remote_build_dir: /opt/cpe212_group2

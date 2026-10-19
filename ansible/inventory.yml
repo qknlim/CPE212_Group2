@@ -1,8 +1,9 @@
+---
 all:
   children:
     docker_hosts:
       vars:
-        ansible_user: <username>
+        ansible_user: <ssh_user>
         ansible_port: 22
         ansible_python_interpreter: /usr/bin/python3
       children:
@@ -12,11 +13,7 @@ all:
               ansible_host: <ip address>
         ubuntu:
           hosts:
-            ubuntu1:
+            ubuntu-vm1:
               ansible_host: <ip address>
-            ubuntu2:
-              ansible_host: <ip address>
-        centos:
-          hosts:
-            centos1:
+            ubuntu-vm2:
               ansible_host: <ip address>

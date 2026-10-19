@@ -1,0 +1,48 @@
+---
+- name: Run the container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}:{{ image_tag }}"
+    state: started
+    recreate: true
+    restart_policy: "{{ container_restart_policy }}"
+    published_ports:
+      - "{{ host_port }}:{{ container_port }}"
+
+- name: "[CentOS] Open port {{ host_port }} in firewalld"
+  ansible.posix.firewalld:
+    port: "{{ host_port }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+  when: ansible_os_family == "RedHat"
+  ignore_errors: true   # firewalld may not be running
+
+- name: "[Ubuntu] Open port {{ host_port }} in UFW (if active)"
+  community.general.ufw:
+    rule: allow
+    port: "{{ host_port }}"
+    proto: tcp
+  when: ansible_os_family == "Debian"
+  ignore_errors: true   # ufw may not be installed/active
+
+- name: Wait for the web app to answer
+  ansible.builtin.uri:
+    url: "http://localhost:{{ host_port }}"
+    status_code: 200
+  register: web_check
+  retries: 5
+  delay: 3
+  until: web_check.status == 200
+
+- name: Get container information
+  community.docker.docker_container_info:
+    name: "{{ container_name }}"
+  register: container_info
+
+- name: Report deployment status
+  ansible.builtin.debug:
+    msg: >-
+      {{ inventory_hostname }} ({{ ansible_distribution }}):
+      container '{{ container_name }}' is {{ container_info.container.State.Status }}
+      -> http://{{ ansible_host }}:{{ host_port }}

@@ -1,0 +1,70 @@
+---
+- name: Check that the project files exist on the control machine
+  ansible.builtin.stat:
+    path: "{{ project_root }}/{{ item }}"
+  loop:
+    - Dockerfile
+    - webapp/index.html
+  register: project_files
+  delegate_to: localhost
+  become: false
+  run_once: true
+
+- name: Fail with a clear message if a required file is missing
+  ansible.builtin.assert:
+    that: item.stat.exists
+    fail_msg: "Missing {{ item.item }} in {{ project_root }}. Create it before building."
+  loop: "{{ project_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  run_once: true
+
+- name: Create build directory on the VM
+  ansible.builtin.file:
+    path: "{{ remote_build_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy Dockerfile to the VM
+  ansible.builtin.copy:
+    src: "{{ project_root }}/Dockerfile"
+    dest: "{{ remote_build_dir }}/Dockerfile"
+    mode: "0644"
+
+- name: Copy .dockerignore to the VM
+  ansible.builtin.copy:
+    src: "{{ project_root }}/.dockerignore"
+    dest: "{{ remote_build_dir }}/.dockerignore"
+    mode: "0644"
+  ignore_errors: true
+
+- name: Copy web application (webapp/) to the VM
+  ansible.builtin.copy:
+    src: "{{ project_root }}/webapp/"
+    dest: "{{ remote_build_dir }}/webapp/"
+    mode: "0644"
+    directory_mode: "0755"
+
+- name: Build Docker image from the Dockerfile
+  community.docker.docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    source: build
+    build:
+      path: "{{ remote_build_dir }}"
+      dockerfile: Dockerfile
+      pull: true
+    force_source: true
+    state: present
+
+- name: Get image information
+  community.docker.docker_image_info:
+    name: "{{ image_name }}:{{ image_tag }}"
+  register: image_info
+
+- name: Confirm the image was built
+  ansible.builtin.debug:
+    msg: >-
+      {{ inventory_hostname }} ({{ ansible_distribution }}):
+      image {{ image_name }}:{{ image_tag }} built,
+      ID {{ image_info.images[0].Id[:19] }}

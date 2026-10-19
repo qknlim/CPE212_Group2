@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: docker_run
+  author: CPE212 Group 2
+  description: Run the portfolio container, open the firewall and verify the site
+  license: MIT
+  min_ansible_version: "2.14"
+dependencies: []

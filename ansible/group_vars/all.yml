@@ -1,0 +1,6 @@
+---
+image_name: cpe212-group2-portfolio
+image_tag: latest
+container_name: cpe212-portfolio
+host_port: 8080        # port on the VM
+container_port: 80     # port Nginx listens on inside the container

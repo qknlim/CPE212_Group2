@@ -1,0 +1,7 @@
+---
+- name: Install Docker on all VMs
+  hosts: docker_hosts
+  become: true
+  roles:
+    - role: docker_install
+      tags: [install]

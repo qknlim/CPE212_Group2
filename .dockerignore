@@ -1,0 +1,11 @@
+.git
+.gitignore
+.vscode
+.DS_Store
+
+ansible/
+docs/
+README.md
+
+Dockerfile
+.dockerignore

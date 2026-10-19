@@ -1,0 +1,7 @@
+---
+- name: Run the portfolio container
+  hosts: docker_hosts
+  become: true
+  roles:
+    - role: docker_run
+      tags: [run]
