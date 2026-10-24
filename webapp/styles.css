@@ -651,6 +651,21 @@ input[type="radio"] { width: 1.15rem; height: 1.15rem; accent-color: var(--accen
 .reflection p + p { margin-top: var(--space-3); }
 
 
+/* Grouped document lists (one group per term) */
+.hoa-group + .hoa-group { margin-top: var(--space-6); }
+.hoa-group h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+
 /* ==========================================================================
    11. Footer
    ========================================================================== */
@@ -662,7 +677,7 @@ footer,
   color: var(--text-faint);
   font-size: var(--text-sm);
 }
-.page-footer { margin-top: var(--space-7); }
+.page-footer { width: auto; margin-inline: 0; margin-top: var(--space-7); }
 footer a, .site-footer a { color: var(--text-muted); }
 footer a:hover, .site-footer a:hover { color: var(--accent); }
 
