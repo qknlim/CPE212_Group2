@@ -13,9 +13,9 @@ Each member's page contains:
 
 | Member | Contribution |
 |--------|--------------|
-| `Charles Vence Espinas` | `<e.g. Web app>` |
-| `Damien Jake Gestiada` | `<e.g. Ansible roles>` |
-| `Kenzo Lim` | `<e.g. Dockerfile>` |
+| `Charles Vence Espinas` | `Ansible files and Dockerfile` |
+| `Damien Jake Gestiada` | `Ansible roles` |
+| `Kenzo Lim` | `Web App` |
 | `Angelo Quioyo` | `<e.g. Documentation and testing>` |
 
 ## How It Works
