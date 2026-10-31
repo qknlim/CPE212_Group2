@@ -4,7 +4,7 @@ all:
 
     docker_hosts:
       vars:
-        ansible_user: <username>
+        ansible_user: charles-vence-espinas
         ansible_port: 22
         ansible_python_interpreter: /usr/bin/python3
 
@@ -12,11 +12,11 @@ all:
         ubuntu:
           hosts:
             ubuntu-server1:
-              ansible_host: <ip address>
+              ansible_host: 192.168.56.108
             ubuntu-server2:
-              ansible_host: <ip address>
+              ansible_host: 192.168.56.109
 
         centos:
           hosts:
             centos-server3:
-              ansible_host: <ip address>
+              ansible_host: 192.168.56.104

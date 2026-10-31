@@ -40,28 +40,78 @@ CPE212_Group2/
 |-- README.md
 |-- Dockerfile
 |-- .dockerignore
-|-- webapp/
-|   |-- index.html
-|   |-- styles.css
-|   `-- members/
-|       |-- surname1/   (index.html, photo.jpg, pdf/)
-|       |-- surname2/
-|       |-- surname3/
-|       `-- surname4/
-`-- ansible/
-    |-- ansible.cfg
-    |-- inventory.yaml
-    |-- requirements.yml
-    |-- site.yml
-    |-- install_docker.yml
-    |-- build_image.yml
-    |-- run_container.yml
-    |-- group_vars/
-    |   `-- all.yml
-    `-- roles/
-        |-- docker_install/   (tasks: main, redhat, debian)
-        |-- docker_build/
-        `-- docker_run/
+|-- ansible/
+|   |-- ansible.cfg
+|   |-- inventory.yaml
+|   |-- requirements.yml
+|   |-- site.yml
+|   |-- install_docker.yml
+|   |-- build_image.yml
+|   |-- run_container.yml
+|   |-- group_vars/
+|   |   `-- all.yml
+|   `-- roles/
+|       |-- docker_build/
+|       |   |-- defaults/main.yml
+|       |   |-- meta/main.yml
+|       |   `-- tasks/main.yml
+|       |-- docker_install/
+|       |   |-- defaults/main.yml
+|       |   |-- meta/main.yml
+|       |   `-- tasks/
+|       |       |-- debian.yml
+|       |       `-- redhat.yml
+|       `-- docker_run/
+|           |-- defaults/main.yml
+|           |-- meta/main.yml
+|           `-- tasks/main.yml
+`-- webapp/
+    |-- index.html
+    |-- styles.css
+    `-- members/
+        |-- espinas/
+        |   |-- index.html
+        |   |-- photo.jpg
+        |   |-- EXAM_ESPINAS/
+        |   |   |-- PRELIM_SKILLS_EXAM/PRELIM_SKILLS_EXAM_CPE212_ESPINAS.pdf
+        |   |   |-- MIDTERM_SKILLS_EXAM/MIDTERM_SKILLS_EXAM_CPE212_ESPINAS.pdf
+        |   |   `-- FINAL_SKILL_EXAM/FINAL_SKILLS_EXAM_CPE212_ESPINAS.pdf
+        |   `-- HOA_ESPINAS/
+        |       |-- PRELIM_HOA/    (HOA1 - HOA5 PDFs)
+        |       |-- MIDTERM_HOA/   (HOA6, HOA7, HOA8, HOA10 PDFs)
+        |       `-- FINAL_HOA/     (HOA11, HOA12 PDFs)
+        |-- gestiada/
+        |   |-- index.html
+        |   |-- photo.jpg
+        |   |-- EXAM_GESTIADA/
+        |   |   |-- PRELIM_SKILLS_EXAM/PRELIM_SKILLS_EXAM_CPE_GESTIADA.pdf
+        |   |   |-- MIDTERM_SKILLS_EXAM/MIDTERM_SKILLS_EXAM_CPE212_GESTIADA.pdf
+        |   |   `-- FINALS_SKILLS_EXAM/FINAL_SKILLS_EXAM_CPE212_GESTIADA.pdf
+        |   `-- HOA_GESTIADA/
+        |       |-- PRELIM_HOA/    (HOA1 - HOA5 PDFs)
+        |       |-- MIDTERM_HOA/   (HOA6, HOA7, HOA8, HOA10 PDFs)
+        |       `-- FINALS_HOA/    (HOA11, HOA12 PDFs)
+        |-- lim/
+        |   |-- index.html
+        |   |-- photo.jpg
+        |   |-- EXAM_LIM/
+        |   |   |-- PRELIM_SKILLS_EXAM/PRELIM_SKILLS_EXAM/PRELIM_SKILL_EXAM_CPE212_LIM.pdf
+        |   |   |-- MIDTERM_SKILLS_EXAM/MIDTERM__SKILLS_EXAM/MIDTERMS_SKILLS_EXAM_CPE212_LIM.pdf
+        |   |   `-- FINALS_SKILL_EXAM/FINALS_SKILLS_EXAM_CPE212_LIM.pdf
+        |   `-- HOA_LIM/
+        |       |-- PRELIM_HOA/    (HOA1 - HOA5 PDFs)
+        |       |-- MIDTERM_HOA/   (HOA6, HOA7, HOA8, HOA10 PDFs)
+        |       `-- FINALS_HOA/    (HOA11, HOA12 PDFs)
+        `-- quioyo/
+            |-- index.html
+            |-- photo.jpg
+            |-- EXAM_QUIOYO/
+            |   |-- PRELIM_SKILLS_EXAM/   (Prelim Exam Skills .docx.pdf)
+            |   `-- MIDTERM_SKILLS_EXAM/  (Midterm Skills Exam_QUIOYO.docx.pdf)
+            `-- HOA_QUIOYO/
+                |-- PRELIM_HOA/    (5 PDFs)
+                |-- MIDTERM_HOA/   (3 PDFs)
+                `-- FINALS_HOA/    (2 PDFs)
 ```
 
 ### Ansible roles
