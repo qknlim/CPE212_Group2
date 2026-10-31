@@ -16,7 +16,7 @@ Each member's page contains:
 | `Charles Vence Espinas` | `Ansible files and Dockerfile` |
 | `Damien Jake Gestiada` | `Ansible roles` |
 | `Kenzo Lim` | `Web App` |
-| `Angelo Quioyo` | `<e.g. Documentation and testing>` |
+| `Angelo Quioyo` | `Documentation and testing` |
 
 ## How It Works
 
